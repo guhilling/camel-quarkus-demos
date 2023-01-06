@@ -2,9 +2,6 @@ package de.hilling.camel;
 
 import io.quarkus.test.junit.QuarkusTest;
 
-import javax.inject.Inject;
-
-import org.apache.camel.CamelContext;
 import org.apache.camel.EndpointInject;
 import org.apache.camel.Produce;
 import org.apache.camel.ProducerTemplate;
@@ -22,15 +19,15 @@ class SampleRouteBuilderTest extends CamelQuarkusTestSupport {
     @Produce("direct:ftp")
     protected ProducerTemplate template;
 
-    @Inject
-    protected CamelContext context;
-
     @EndpointInject("mock:file:sample_requests")
     protected MockEndpoint fileMock;
 
     @Override
-    protected RoutesBuilder createRouteBuilder() {
-        return new SampleRouteBuilder();
+    protected RoutesBuilder[] createRouteBuilders() {
+        return new RoutesBuilder[] {
+            new SampleRouteBuilder(),
+            new SecondRouteBuilder()
+        };
     }
 
     @BeforeEach
