@@ -38,8 +38,8 @@ class SampleRouteBuilderTest extends CamelQuarkusTestSupport {
 
     @Test
     void testConsumeFtpWriteToFileOne() throws Exception {
-        fileMock.message(0).body().isEqualTo("Hello World");
-        template.sendBody("direct:ftp", "Hello World");
+        fileMock.message(0).body().isEqualTo("Hello World!");
+        template.sendBody("direct:ftp", "Hello World!");
         fileMock.assertIsSatisfied();
     }
 
